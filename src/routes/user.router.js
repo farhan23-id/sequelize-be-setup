@@ -1,9 +1,26 @@
-const express = require("express");
+const express =
+  require("express");
 
-const { index } = require("../controllers/user.controller");
+const {
+  index,
+} = require(
+  "../controllers/user.controller"
+);
 
-const router = express.Router();
+const {
+  verifyToken,
+} = require(
+  "../middlewares/auth"
+);
 
-router.get("/", index);
+const router =
+  express.Router();
 
-module.exports = router;
+router.get(
+  "/",
+  verifyToken,
+  index
+);
+
+module.exports =
+  router;
